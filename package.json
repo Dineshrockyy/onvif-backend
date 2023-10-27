@@ -1,0 +1,17 @@
+{
+  "name": "onvif-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "libnmap": "^0.4.19",
+    "node-onvif": "0.0.7",
+    "onvif": "github:agsh/onvif#v1"
+  }
+}
