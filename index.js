@@ -40,6 +40,7 @@ app.get('/discover', (req, res) => {
         });
     }
     res.json(devices)
+    console.log('hdfghjgjfdhjdskjfk');
 
 });
 
