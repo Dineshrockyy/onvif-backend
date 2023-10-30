@@ -8,6 +8,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/discover', (req, res) => {
+    console.log('hdfghjgjfdhjdskjfk');
     const devices = [];
     onvif.Discovery.on('device', function (cam) {
         share(cam)
@@ -40,7 +41,6 @@ app.get('/discover', (req, res) => {
         });
     }
     res.json(devices)
-    console.log('hdfghjgjfdhjdskjfk');
 
 });
 
