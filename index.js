@@ -7,40 +7,37 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
+
 app.get('/discover', (req, res) => {
-    console.log('hdfghjgjfdhjdskjfk');
+    let address = req.body.ips
     const devices = [];
-    onvif.Discovery.on('device', function (cam) {
-        share(cam)
-        // console.log(cam);
-        // cam.connect();
-
-    })
-    // Must have an error handler to catch bad replies from the network
-    onvif.Discovery.on('error', function (err, xml) {
-        // function called as soon as NVT responds, but this library could not parse the response
-        console.log('Discovery error ' + err);
-    });
-    onvif.Discovery.probe();
-
-    function share(ip) {
+    let count = 0
+    address.map((val) => {
         new onvif.Cam({
-            hostname: ip.hostname,
-            username: 'admin',
-            password: 'Sieora123'
+            hostname: val,
+            username: req.body.username,
+            password: req.body.password
         }, function (err) {
             try {
                 this.getStreamUri({ protocol: 'RTSP' }, function (err, stream) {
+                    count = count + 1
                     devices.push(stream)
-                    res.json(devices)
-                    console.log(stream);
+                    if (address.length === count) {
+                        res.json(devices)
+                    }
                 });
+
+                // this.getDeviceInformation(function (err, info, xml) {
+                //     console.log(info);
+                // })
             } catch {
-                console.log(ip.hostname);
+                count = count + 1
+                if (address.length === count) {
+                    res.json(devices)
+                }
             }
         });
-    }
-    res.json(devices)
+    })
 
 });
 
