@@ -33,7 +33,7 @@ app.get('/discover', (req, res) => {
                 // })
             } catch {
                 count = count + 1
-                console.log(val);
+                console.log('error',val);
                 if (address.length === count) {
                     res.json(devices)
                 }
