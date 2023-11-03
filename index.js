@@ -22,6 +22,7 @@ app.get('/discover', (req, res) => {
                 this.getStreamUri({ protocol: 'RTSP' }, function (err, stream) {
                     count = count + 1
                     devices.push(stream)
+                    console.log(stream);
                     if (address.length === count) {
                         res.json(devices)
                     }
@@ -32,6 +33,7 @@ app.get('/discover', (req, res) => {
                 // })
             } catch {
                 count = count + 1
+                console.log(val);
                 if (address.length === count) {
                     res.json(devices)
                 }
