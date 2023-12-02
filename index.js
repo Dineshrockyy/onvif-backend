@@ -34,16 +34,14 @@ app.use(express.json());
 //     res.send(200).json({ url: `ws://127.0.0.1:9999` })
 // })
 
-app.post("/stream", (req, res) => {
-    stream = new Stream({
-        name: 'name',
-        streamUrl: 'rtsp://aitest:Ac72!k34j2r1@184.69.129.222:8012/streaming/channels/1002',
-        wsPort: 9999,
-        ffmpegOptions: { // options ffmpeg flags
-            '-stats': '', // an option with no neccessary value uses a blank string
-            '-r': 30 // options with required values specify the value after the key
-        }
-    })
+stream = new Stream({
+    name: 'name',
+    streamUrl: 'rtsp://aitest:Ac72!k34j2r1@184.69.129.222:8012/streaming/channels/1002',
+    wsPort: 9999,
+    ffmpegOptions: { // options ffmpeg flags
+        '-stats': '', // an option with no neccessary value uses a blank string
+        '-r': 30 // options with required values specify the value after the key
+    }
 })
 
 app.listen(PORT, () => {
